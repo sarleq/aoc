@@ -2,6 +2,8 @@ package y2023
 
 import Day
 import util.*
+import util.MathsUtil.calculateManhattanDistance
+import util.MathsUtil.transpose
 import java.math.BigInteger
 
 fun main() = Day11.run()
@@ -26,7 +28,7 @@ object Day11: Day() {
         for (i in 0..<galaxies.indices.last) {
             for (j in i+1..galaxies.indices.last) {
                 if (galaxies[i] != galaxies[j]) {
-                    distances += MathsUtil.calculateManhattanDistance(galaxies[i].first, galaxies[i].second, galaxies[j].first, galaxies[j].second).toBigInteger()
+                    distances += calculateManhattanDistance(galaxies[i].first, galaxies[i].second, galaxies[j].first, galaxies[j].second).toBigInteger()
                     if (part2) {
                         val emptyRows = getEmptyRowsOrCols(universe, galaxies[i].first, galaxies[j].first)
                         val emptyCols = getEmptyRowsOrCols(transpose(universe), galaxies[i].second, galaxies[j].second)
@@ -54,18 +56,6 @@ object Day11: Day() {
             if (line.all { it == '.' }) universe.add(line)
         }
         return universe
-    }
-
-    private fun transpose(array: MutableList<CharArray>): MutableList<CharArray> {
-        val width = array.size
-        val height = array[0].size
-        val newArray = MutableList(height) { CharArray(width) }
-        for (x in 0..<width) {
-            for (y in 0..<height) {
-                newArray[y][x] = array[x][y]
-            }
-        }
-        return newArray
     }
 
     private fun getUniverse(): MutableList<CharArray> {
