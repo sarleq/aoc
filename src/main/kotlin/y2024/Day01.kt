@@ -8,13 +8,13 @@ fun main() = Day01.run()
 
 object Day01: Day() {
 
-    private val file = FileReader.readAsStrings("y2024/Day01.txt")
+    private val data = FileReader.readAsStrings("y2024/Day01.txt")
 
     override fun part1(): Int {
-        val listOne = file.map {
+        val listOne = data.map {
             it.split("   ")[0].toInt()
         }.sorted()
-        val listTwo = file.map {
+        val listTwo = data.map {
             it.split("   ")[1].toInt()
         }.sorted()
         var distance = 0
@@ -24,11 +24,11 @@ object Day01: Day() {
         return distance
     }
 
-    override fun part2(): Any {
-        val listOne = file.map {
+    override fun part2(): Int {
+        val listOne = data.map {
             it.split("   ")[0].toInt()
         }
-        val listTwo = file.map {
+        val listTwo = data.map {
             it.split("   ")[1].toInt()
         }
         var similarity = 0

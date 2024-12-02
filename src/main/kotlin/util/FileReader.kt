@@ -7,5 +7,6 @@ object FileReader {
     fun readAsStrings(path: String) = readFile(path).split("\r\n")
     fun readAsCharArrays(path: String) = readAsStrings(path).map { it.toCharArray() }
     fun readAsInts(path: String) = readAsStrings(path).map { it.toInt() }
+    fun readAsIntLists(path: String) = readAsStrings(path).map { it.split(" ").map { i -> i.toInt() } }
 
 }
