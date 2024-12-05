@@ -23,7 +23,7 @@ object Day04: Day() {
         return xmas
     }
 
-    override fun part2(): Any {
+    override fun part2(): Int {
         var xmas = 0
         for (y in grid.yIndices) {
             for (x in grid.xIndices) {
