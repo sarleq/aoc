@@ -11,6 +11,13 @@ object Day05: Day() {
     private val rules = mutableListOf<Pair<Int, Int>>()
     private val updates = mutableListOf<List<Int>>()
 
+    init {
+        for (line in data) {
+            if (line.contains("|")) rules.add(line.split("|")[0].toInt() to line.split("|")[1].toInt())
+            if (line.contains(",")) updates.add(line.split(",").map { it.toInt() })
+        }
+    }
+
     override fun part1() = updates.filter { isRightOrder(it) }.sumOf { it[it.indices.last/2] }
 
     override fun part2(): Int {
@@ -24,17 +31,6 @@ object Day05: Day() {
             result += newUpdate[newUpdate.indices.last/2]
         }
         return result
-    }
-
-    override fun init() {
-        formatData()
-    }
-
-    private fun formatData() {
-        for (line in data) {
-            if (line.contains("|")) rules.add(line.split("|")[0].toInt() to line.split("|")[1].toInt())
-            if (line.contains(",")) updates.add(line.split(",").map { it.toInt() })
-        }
     }
 
     private fun isRightOrder(update: List<Int>): Boolean {
